@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: mysql-rs-name
+  namespace: my-db
+  labels:
+    app: mysql-rs-labels
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: babak-app
+  template:
+    metadata:
+      labels:
+        app: babak-app  
+    spec:
+      containers:
+      - name: mysql-container-name
+        image: 328460808357.dkr.ecr.us-east-1.amazonaws.com/a1-db:v1.0
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: "babak"
+        ports:
+        - name: mysql-port-name
+          containerPort: 3306
+          protocol: TCP

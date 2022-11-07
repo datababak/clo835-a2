@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: app-rs-name
+  namespace: my-app
+  labels:
+    app: app-rs-label
+    owner: babak
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: this_is_important_label
+  template:
+    metadata:
+      labels
+       app: this_is_important_label
+    spec:
+      containers:
+      - name: app-rs-name2-intemplate
+        image: 328460808357.dkr.ecr.us-east-1.amazonaws.com/a1-app:v1.0
+        env:
+        - name: DBHOST
+          value: 10-244-0-5.my-db.pod.cluster.local
+        - name: DBPORT
+          value: "3306"
+        - name: DBUSER
+          value: root
+        - name: DBPWD
+          value: babak
+        ports:
+        - name: employee-ptname
+          containerPort: 8080
+          protocol: TCP

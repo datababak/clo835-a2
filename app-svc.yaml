@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: clusterip-app-name
+  namespace: my-app
+  labels:
+    app: clusterip-app-label
+    owner: babak
+spec:
+  ports:
+  - port: 1111
+    targetPort: 3306
+  selector:
+    app: app-dep-label
